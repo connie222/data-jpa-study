@@ -11,6 +11,14 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(of = {"id", "username", "age"})
+/*
+* namedQuery는 어플리케이션 실행 시점에 파싱을 하기 때문에
+* 로딩 시점에 에러를 발견할 수 있다.
+* */
+@NamedQuery(
+        name="Member.findByUsername",
+        query="select m from Member m where m.username=:username"
+)
 public class Member {
 
     @Id
